@@ -1,0 +1,16 @@
+resources:
+- deployment.yaml
+patches:
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: my-.*
+    labelSelector: "env=dev"
+  path: patch.yaml
+- target:
+    kind: Deployment
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 3

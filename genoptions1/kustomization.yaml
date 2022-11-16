@@ -1,0 +1,36 @@
+# Each configMapGenerator item accepts a parameter of behavior:
+# [create|replace|merge]. This allows an overlay to modify or replace an
+# existing configMap from the parent
+#configMapGenerator:
+#- name: java-server
+#  behavior: merge
+#  literals: 
+#  - JAVA_HOME=/opt/java/jdk
+#  - JAVA_TOOL_OPTIONS=-agentlib:hprof
+#  options:
+#    disableNameSuffixHash: true
+#    labels:
+#      pet: dog
+generatorOptions:
+  labels:
+    fruit: apple
+
+configMapGenerator:
+- name: java-server
+  #behavior: merge
+  literals: 
+  - JAVA_HOME=/opt/java/jdk
+  - JAVA_TOOL_OPTIONS=-agentlib:hprof
+  options:
+    disableNameSuffixHash: true
+    labels:
+      pet: dog
+- name: dashboards
+  files:
+  - mydashboard0.json
+  - foo.json=mydashboard1.json
+  options:
+    annotations:
+      dashboard: "1"
+    labels:
+      app.kubernetes.io/name: "app1"

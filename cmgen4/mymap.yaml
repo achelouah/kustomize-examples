@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: mymap
+envs:
+- devops.env
+- uxteam.env
+literals:
+- FRUIT=apple
+- VEGETABLE=carrot
